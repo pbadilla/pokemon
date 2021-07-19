@@ -1,83 +1,89 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import media from 'styled-media-query';
 
-interface ElementColorProps {
-  color: string;
-}
-
-export const Container = styled.div<ElementColorProps>`
+export const Container = styled.div`
+  align-items: center;
+  background: white;
+  border-radius: 2px;
+  border: 1px solid black;
+  box-shadow: 1px 3px 12px 0 rgba(0, 0, 0, 0.3);
   display: flex;
-  position: relative;
-  width: 100%;
-  height: 100vh;
-
-  background: ${props => props.color};
+  flex-direction: column;
+  justify-content: center;
+  margin: 5% auto 0 auto;
+  min-height: 430px;
+  transition: all ease 0.4s;
+  width: 400px;
 
   h1 {
-    color: ${props => props.color};
+    color: black;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 2rem;
+  }
+
+  img {
+    min-width: 80px;
   }
 `;
 
 export const GoBack = styled(Link)`
-  position: fixed;
-  top: 6vw;
-  left: 1vw;
-  z-index: 10;
-
-  display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.colors.text.white};
-
+  color: ${({ theme }) => theme.colors.text.primary};
+  display: flex;
   &:hover {
     cursor: pointer;
   }
-`;
-
-export const BackgroundNamePokemon = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 2;
-
-  h1 {
-    font-weight: bold;
-    font-size: 12vw;
-    text-align: center;
-    text-transform: uppercase;
-
-    background: -webkit-linear-gradient(
-      -90deg,
-      rgba(255, 255, 255, 0.6) 0%,
-      rgba(255, 255, 255, 0.09) 60%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-stroke: 4px transparent;
+  > span {
+    left: 175px;
+    font-size: 14px;
+    position: relative;
+    top: 15px;
   }
-
-  ${media.lessThan('huge')`
-    h1 {
-      font-size: 120px;
-    }
-  `};
 `;
 
 export const Content = styled.div`
-  flex: 1;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  padding: 1rem;
+  width: 100%;
+`;
+
+export const ContentXtras = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  text-align: left;
+  width: 100%;
+  & > ul {
+    list-style: none;
+    line-height: 2rem;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+    li > ul li {
+      font-size: 12px;
+      line-height: 14px;
+      list-style: disc;
+      margin-left: 30px;
+    }
+  }
+
+  span {
+    font-size: 12px;
+  }
 `;
 
 export const Header = styled.div`
-  position: relative;
-
-  display: flex;
-  flex-direction: row;
   align-items: center;
   align-self: center;
+  display: flex;
+  flex-direction: row;
   margin-top: 14vh;
+  position: relative;
 
   > img {
     z-index: 3;
@@ -117,39 +123,7 @@ export const Header = styled.div`
   `};
 `;
 
-// export const PokemonCircle = styled.span<ElementColorProps>`
-//   z-index: 1;
-//   /* position: absolute;
-//   top: 0;
-//   left: 0; */
-//   height: 350px;
-//   width: 350px;
-
-//   border: double 10px transparent;
-//   border-radius: 50%;
-//   background-image: ${props =>
-//     `linear-gradient(${props.color}, ${props.color}), linear-gradient(160deg, ${props.color} 30%, rgba(255, 255, 255, 0.6) 100%)`};
-//   background-origin: border-box;
-//   background-clip: content-box, border-box;
-//   animation: animate 3s ease infinite;
-//   /* transform: rotate(180deg); */
-
-//   @keyframes animate {
-//     0% {
-//       transform: rotate(240deg);
-//     }
-//     100% {
-//       transform: rotate(600deg);
-//     }
-//   }
-// `;
-
-interface PokemonLoaderProps {
-  colorType: string;
-  colorBackground: string;
-}
-
-export const PokemonLoader = styled.div<PokemonLoaderProps>`
+export const PokemonLoader = styled.div`
   position: relative;
   z-index: 1;
 
@@ -181,11 +155,6 @@ export const PokemonLoader = styled.div<PokemonLoaderProps>`
     left: 0;
     width: 50%;
     height: 100%;
-    background: ${props => `linear-gradient(
-      to top,
-      transparent,
-      ${props.colorType}
-    )`};
     background-size: 175px 315px;
     background-repeat: no-repeat;
     border-top-left-radius: 175px;
@@ -212,22 +181,9 @@ export const PokemonLoader = styled.div<PokemonLoaderProps>`
     left: 10px;
     right: 10px;
     bottom: 10px;
-    background: ${props => props.colorBackground};
+    background: white;
     border-radius: 50%;
   }
-`;
-
-export const PokemonNumber = styled.span`
-  font-weight: bold;
-  font-size: 30px;
-  letter-spacing: 2px;
-  line-height: 32px;
-  color: rgba(23, 23, 27, 0.6);
-
-  ${media.lessThan('huge')`
-    font-size: 22px;
-    line-height: 24px;
-  `};
 `;
 
 export const PokemonName = styled.span`
@@ -235,7 +191,7 @@ export const PokemonName = styled.span`
   font-size: 60px;
   line-height: 65px;
   text-transform: capitalize;
-  color: ${({ theme }) => theme.colors.text.white};
+  color: ${({ theme }) => theme.colors.text.primary};
 
   ${media.lessThan('huge')`
     font-size: 35px;
@@ -243,100 +199,3 @@ export const PokemonName = styled.span`
   `};
 `;
 
-export const PokemonType = styled.div<ElementColorProps>`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  padding: 8px;
-
-  background: ${({ color }) => color};
-  border-radius: 3px;
-
-  & + div {
-    margin-left: 10px;
-  }
-
-  svg {
-    width: 18px;
-    height: 18px;
-
-    path {
-      fill: #fff;
-    }
-  }
-
-  span {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    color: #ffffff;
-    margin-left: 8px;
-    text-transform: capitalize;
-  }
-
-  ${media.lessThan('huge')`
-    svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    span {
-      font-size: 16px;
-      line-height: 20px;
-    }
-  `};
-`;
-
-export const SectionsName = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: auto 0 10px;
-`;
-
-export const ContentSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  background: white;
-  height: 320px;
-  padding: 0 40px;
-  border-radius: 45px 45px 0 0;
-
-  ${media.lessThan('huge')`
-    padding: 0 20px;
-  `};
-`;
-
-export const SectionsNameButton = styled.button<{ active: boolean }>`
-  position: relative;
-
-  border: 0;
-  outline: 0;
-  width: 170px;
-  background: none;
-
-  font-size: 35px;
-  line-height: 38px;
-  color: ${({ theme }) => theme.colors.text.white};
-  opacity: ${props => (props.active ? 1 : 0.4)};
-
-  text-transform: capitalize;
-
-  svg {
-    position: absolute;
-    top: -34px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 0;
-    width: 170px;
-    height: auto;
-    path {
-      fill: rgba(255, 255, 255, 0.08);
-    }
-  }
-`;

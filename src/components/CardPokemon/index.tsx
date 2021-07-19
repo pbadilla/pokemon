@@ -35,7 +35,7 @@ const CardPokemon: React.FC<{ name: string }> = ({ name }) => {
     <SC.Container to={`pokemon/${name}`}>
       <SC.Pokemon>
         {pokemon.image && (
-          <img src={pokemon.image} alt={`Pokemon -  ${name}`} />
+          <img src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`} />
         )}
         <SC.PokemonName>{name}</SC.PokemonName>
       </SC.Pokemon>

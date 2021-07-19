@@ -29,8 +29,8 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background: ${({ theme }) => theme.colors.text.white};
-    color: ${({ theme }) => theme.colors.text.black};
+    background: ${({ theme }) => theme.colors.background.primary};
+    color: ${({ theme }) => theme.colors.text.secondary};
     font-family: 'SF Pro Display', serif;
     -webkit-font-smoothing: antialiased;
   }

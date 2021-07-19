@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components/macro'
 import { device } from '~/styles/breakpoints'
 
 export const Header = styled.header`
@@ -26,9 +26,4 @@ export const LogoImmfly = styled.img`
 export const LogoPokemon = styled.img`
   margin: 0 auto;
   width: 230px;
-`
-export const SubTitle = styled.span`
-  margin: 2rem 0 0 0;
-  font-size: 1rem;
-  font-weight: bold;
 `

@@ -2,26 +2,23 @@ import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 
 export const Container = styled(Link)`
-  alig-items: center;
-  background: white;
+  align-items: center;
+  
   border-radius: 4px;
   border: 1px solid black;
+  background-color: white;
   box-shadow: 1px 3px 12px 0 rgba(0, 0, 0, 0.3);
   display: flex;
   height: 180px;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
   transition: all ease 0.4s;
-  width: inherit;
+  width: 95%;
 
   &:hover {
     cursor: pointer;
-    border-radius: 15px;
-
-    > img {
-      filter: grayscale(0);
-      top: -45px;
-    }
+    background-color: ${({ theme }) => theme.colors.background.secondary};
   }
 `;
 
@@ -33,8 +30,6 @@ export const Pokemon = styled.div`
   justify-content: center;
 
   > img {
-    -webkit-transition: -webkit-filter 400ms ease;
-    filter: grayscale(100%);
     height: 60px;
     transition: all ease 0.4s;
     width: 60px;
@@ -61,9 +56,10 @@ export const Pokemon = styled.div`
 `;
 
 export const PokemonName = styled.span`
-  color: ${({ theme }) => theme.colors.background.input};
-  font-size: 40px;
-  font-weight: bold;
-  line-height: 45px;
+  color: ${({ theme }) => theme.colors.text.secondary};
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 14px;
+  margin-top: 50px;
   text-transform: capitalize;
 `;

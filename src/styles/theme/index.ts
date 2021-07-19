@@ -6,11 +6,11 @@ const defaultTheme: DefaultTheme = {
   colors: {
     text : {
       primary: '#17171B',
-      secondary: '#747476',
+      secondary: '#000',
       white: '#FFF',
     },
     background: {
-      primary: '#FFFFFF',
+      primary: '#FFF',
       secondary: '#E2E2E2'
     },
   },

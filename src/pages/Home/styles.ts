@@ -1,10 +1,9 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import media from 'styled-media-query';
 
 export const Container = styled.div`
-  position: relative;
-
   align-items: stretch;
+  background-color: #f3f1f1;
   display: flex;
   flex-direction: column;
   padding: 30px 80px;
@@ -26,7 +25,7 @@ export const Container = styled.div`
 
   button {
     font-size: 20px;
-    color: ${({ theme }) => theme.colors.text.white};
+    color: ${({ theme }) => theme.colors.text.primary};
 
     width: 50%;
     height: 50px;
@@ -51,20 +50,30 @@ export const Container = styled.div`
   `};
 `;
 
+export const SubTitle = styled.span`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 2rem 0 0 0;
+`;
+
 export const Pokemons = styled.div`
   display: grid;
   flex: 1;
   gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
 
   ${media.lessThan('huge')`
     grid-template-columns: repeat(3, 1fr);
   `};
 
-  ${media.lessThan('large')`
-    align-items: stretch;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
+  ${media.between('small', 'large')`
+    grid-template-columns: repeat(2, 1fr);
   `};
+
+  ${media.lessThan('small')`
+    grid-template-columns: repeat(1, 1fr);
+  `};
+
 `;

@@ -20,12 +20,14 @@ const Home: React.FC = () => {
   const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
   const [pokemonSearch, setPokemonSearch] = useState('');
   const [pokemonsOffsetApi, setPokemonsOffsetApi] = useState(NUMBER_POKEMONS);
+  const [totalPokemons, setTotalPokemons] = useState(null);
 
   // search
   const handleSearchPokemons = useCallback(async () => {
     const response = await api.get(`/pokemon?limit=${NUMBER_MAX_POKEMONS_API}`);
 
     setPokemonSearch(pokemonSearch.toLocaleLowerCase());
+
     // Validation names
     const pokemonsSearch = response.data.results.filter(
       ({ name }: PokemonProps) => name.includes(pokemonSearch),
@@ -40,6 +42,7 @@ const Home: React.FC = () => {
         limit: NUMBER_POKEMONS,
       },
     });
+    setTotalPokemons(response.data.count);
     setPokemons(response.data.results);
   }, []);
 
@@ -67,9 +70,15 @@ const Home: React.FC = () => {
     [NUMBER_POKEMONS],
   );
 
+  console.log("totalPokemons", totalPokemons);
+
   return (
     <SC.Container>
       <Header />
+      <SC.SubTitle>
+        <span>Generation I</span>
+        <span>{totalPokemons !== null && totalPokemons} pokemons</span>
+      </SC.SubTitle>
       <InputSearch value={pokemonSearch} onChange={setPokemonSearch} />
       <SC.Pokemons>
         {pokemons.map(pokemon => (

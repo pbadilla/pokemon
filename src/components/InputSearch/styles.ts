@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import media from 'styled-media-query';
 
 interface ContainerProps {
@@ -14,17 +14,17 @@ export const Container = styled.div<ContainerProps>`
   padding: 0 20px;
   height: 60px;
 
-  background: ${({ theme }) => theme.colors.background.input};
+  background: ${({ theme }) => theme.colors.background.primary};
   border-radius: 10px;
   border: 2px solid
     ${({ isFocused, theme }) =>
-      isFocused ? theme.colors.background.pressedInput : 'transparent'};
+      isFocused ? theme.colors.background.secondary :'black'};
 
   svg {
     width: 20px;
     height: 20px;
     margin-right: 10px;
-    color: ${({ theme }) => theme.colors.text.gray};
+    color: ${({ theme }) => theme.colors.text.primary};
 
     opacity: ${({ isFocused }) => (isFocused ? 1 : 0.8)};
   }
@@ -32,7 +32,7 @@ export const Container = styled.div<ContainerProps>`
   input {
     flex: 1;
     font-size: 18px;
-    color: ${({ theme }) => theme.colors.text.gray};
+    color: ${({ theme }) => theme.colors.text.primary};
     border: none;
     background: transparent;
     text-align: center;
