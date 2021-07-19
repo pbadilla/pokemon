@@ -4,17 +4,10 @@ import media from 'styled-media-query';
 export const Container = styled.div`
   position: relative;
 
+  align-items: stretch;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   padding: 30px 80px;
-
-  > h1 {
-    font-weight: bold;
-    font-size: 50px;
-
-    color: ${({ theme }) => theme.colors.text.black};
-  }
 
   > svg {
     position: fixed;
@@ -59,20 +52,19 @@ export const Container = styled.div`
 `;
 
 export const Pokemons = styled.div`
-  flex: 1;
-
   display: grid;
+  flex: 1;
+  gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
 
   ${media.lessThan('huge')`
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   `};
 
   ${media.lessThan('large')`
+    align-items: stretch;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
     gap: 50px;
   `};
 `;

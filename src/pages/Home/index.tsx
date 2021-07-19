@@ -2,11 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import CardPokemon from '~/components/CardPokemon';
 import InputSearch from '~/components/InputSearch';
+import Header from '~/components/Header';
 
 import api from '~/services/api';
-import { Pokeball } from '~/assets/patterns';
 
-import { Container, Pokemons } from './styles';
+import * as SC from './styles';
 
 interface PokemonProps {
   id: string;
@@ -14,26 +14,26 @@ interface PokemonProps {
 }
 
 const Home: React.FC = () => {
-  const NUMBER_POKEMONS = 9;
+  const NUMBER_POKEMONS = 20;
   const NUMBER_MAX_POKEMONS_API = 750;
 
   const [pokemons, setPokemons] = useState<PokemonProps[]>([]);
   const [pokemonSearch, setPokemonSearch] = useState('');
   const [pokemonsOffsetApi, setPokemonsOffsetApi] = useState(NUMBER_POKEMONS);
 
-  // Filtra os pokémons a partir da string digita no input de busca
+  // search
   const handleSearchPokemons = useCallback(async () => {
     const response = await api.get(`/pokemon?limit=${NUMBER_MAX_POKEMONS_API}`);
 
     setPokemonSearch(pokemonSearch.toLocaleLowerCase());
-    // Valida nomes dos pokémons constam no valor da variável pokemonSearch
+    // Validation names
     const pokemonsSearch = response.data.results.filter(
       ({ name }: PokemonProps) => name.includes(pokemonSearch),
     );
     setPokemons(pokemonsSearch);
   }, [pokemonSearch]);
 
-  // Carrega uma lista inicial de pokémons
+  // First load
   const handlePokemonsListDefault = useCallback(async () => {
     const response = await api.get('/pokemon', {
       params: {
@@ -44,14 +44,14 @@ const Home: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // A busca é só feita quando a string tiver 2 ou mais caracteres
+    // 2 charachers to search
     const isSearch = pokemonSearch.length >= 2;
 
     if (isSearch) handleSearchPokemons();
     else handlePokemonsListDefault();
   }, [pokemonSearch, handlePokemonsListDefault, handleSearchPokemons]);
 
-  // Adiciona novos pokémons a lista
+  // AAdd new Pokemons
   const handleMorePokemons = useCallback(
     async offset => {
       const response = await api.get(`/pokemon`, {
@@ -68,27 +68,23 @@ const Home: React.FC = () => {
   );
 
   return (
-    <Container>
-      <Pokeball />
-      <h1>Pokédex</h1>
-
+    <SC.Container>
+      <Header />
       <InputSearch value={pokemonSearch} onChange={setPokemonSearch} />
-
-      <Pokemons>
+      <SC.Pokemons>
         {pokemons.map(pokemon => (
           <CardPokemon key={pokemon.name} name={pokemon.name} />
         ))}
-      </Pokemons>
-
+      </SC.Pokemons>
       {pokemonSearch.length <= 2 && (
         <button
           type="button"
           onClick={() => handleMorePokemons(pokemonsOffsetApi)}
         >
-          CARREGAR MAIS
+          Load more
         </button>
       )}
-    </Container>
+    </SC.Container>
   );
 };
 

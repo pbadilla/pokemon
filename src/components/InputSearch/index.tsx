@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { FaSearch } from 'react-icons/fa';
 
-import { Container } from './styles';
+import * as SC from './styles';
 
 interface InputSearchProps {
   value: string;
@@ -20,16 +19,15 @@ const InputSearch: React.FC<InputSearchProps> = ({ value, onChange }) => {
   }, []);
 
   return (
-    <Container isFocused={isFocused}>
-      <FaSearch />
+    <SC.Container isFocused={isFocused}>
       <input
-        placeholder={isFocused ? '' : 'Qual Pokémon você está procurando?'}
+        placeholder={isFocused ? '' : '¿Qué pokemon buscas?'}
         value={value}
         onChange={e => onChange(e.target.value)}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
       />
-    </Container>
+    </SC.Container>
   );
 };
 
