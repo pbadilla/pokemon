@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import api from '~/services/api';
 
+import Loader from "react-loader-spinner";
+
 import * as SC from './styles';
 
 interface PokemonProps {
@@ -27,9 +29,12 @@ const CardPokemon: React.FC<{ name: string }> = ({ name }) => {
   return (
     <SC.Container to={`pokemon/${name}`}>
       <SC.Pokemon>
-        {pokemon.image && (
+        {pokemon.image
+        ? (
           <img alt={`Pokemon ${name}`} src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`} />
-        )}
+        )
+        : <Loader type="Rings" color="#db221c" height={80} width={80} timeout={3000} />
+        }
         <SC.PokemonName>{name}</SC.PokemonName>
       </SC.Pokemon>
     </SC.Container>

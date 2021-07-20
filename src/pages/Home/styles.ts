@@ -60,6 +60,14 @@ export const SubTitle = styled.span`
   margin: 2rem 0 0 0;
 `;
 
+export const Loader = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  width: 100%;
+`;
+
 export const ToggleButton = styled.div`
   align-items: flex-end;
   display: flex;

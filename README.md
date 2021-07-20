@@ -2,7 +2,7 @@ Pokemon First GEN  v.1.0.0
 
 # Pokemon First GEN list and detail
 
-List of POkemons with "Load More" button to load more items into grid of Pokemons.
+List of Pokemons with "Load More" button to load more items into grid of Pokemons.
 
 When you click into a Pokemon's card is visualized some properties for this Pokemon a part.
 

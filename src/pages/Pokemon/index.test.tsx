@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-import Home from './index';
+import Pokemon from './index';
 
 test('loads and displays greeting', async () => {
-  render(<Home />)
+  render(<Pokemon />)
 
   // fireEvent.click(screen.getByText('Load Greeting'))
 

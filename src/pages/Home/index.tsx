@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
+import Loader from "react-loader-spinner";
+
 import CardPokemon from '~/components/CardPokemon';
 import InputSearch from '~/components/InputSearch';
 import Header from '~/components/Header';
@@ -61,9 +63,7 @@ const Home: React.FC<ThemeProps> = () => {
   useEffect(() => {
     // 2 charachers to search
     const isSearch = pokemonSearch.length >= 2;
-
-    if (isSearch) handleSearchPokemons();
-    else handlePokemonsListDefault();
+    isSearch ? handleSearchPokemons() : handlePokemonsListDefault();
   }, [pokemonSearch, handlePokemonsListDefault, handleSearchPokemons]);
 
   // Add new Pokemons
@@ -75,7 +75,6 @@ const Home: React.FC<ThemeProps> = () => {
           offset,
         },
       });
-
       setPokemons(state => [...state, ...response.data.results]);
       setPokemonsOffsetApi(state => state + NUMBER_POKEMONS);
     },
@@ -84,30 +83,41 @@ const Home: React.FC<ThemeProps> = () => {
 
   return (
     <SC.Container>
-      <Header />
+      <Header data-test="test-header"/>
       <SC.SubTitle>
         <span>Generation I</span>
         <span>{totalPokemons !== null && totalPokemons} pokemons</span>
       </SC.SubTitle>
       <InputSearch value={pokemonSearch} onChange={setPokemonSearch} />
       <SC.ToggleButton>
-        <ToggleButton />
+        <ToggleButton data-test="test-togglebutton" />
       </SC.ToggleButton>
-      <SC.Pokemons>
-        {pokemons.map(pokemon => (
-          <CardPokemon key={pokemon.name} name={pokemon.name} />
-        ))}
-      </SC.Pokemons>
+      { pokemons.length > 0
+        ? (
+          <SC.Pokemons>
+          {pokemons.map(pokemon => (
+            <CardPokemon key={pokemon.name} name={pokemon.name} data-test="test-cards" />
+          ))}
+        </SC.Pokemons>
+        )
+        : (
+          <SC.Loader>
+            <Loader type="Rings" color="#db221c" height={80} width={80} timeout={3000} />
+          </SC.Loader>
+        )
+      }
+      
       {pokemonSearch.length <= 2 && (
         <button
           type="button"
           onClick={() => handleMorePokemons(pokemonsOffsetApi)}
+          data-test="test-load-button"
         >
           Load more
         </button>
       )}
     </SC.Container>
   );
-};
+};  
 
 export default Home;
