@@ -1,6 +1,6 @@
 import { DefaultTheme } from 'styled-components/macro';
 
-const defaultTheme: DefaultTheme = {
+export const defaultTheme: DefaultTheme = {
   title: 'default',
 
   colors: {
@@ -16,4 +16,18 @@ const defaultTheme: DefaultTheme = {
   },
 };
 
-export default defaultTheme;
+export const darkTheme: DefaultTheme = {
+  title: 'dark',
+
+  colors: {
+    text : {
+      primary: 'red',
+      secondary: 'black',
+      white: 'white',
+    },
+    background: {
+      primary: 'blue',
+      secondary: 'orange'
+    },
+  },
+};

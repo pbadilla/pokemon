@@ -1,4 +1,4 @@
-import React, { SVGProps } from 'react';
+import React from 'react';
 
 import ImmflyLogo from "~/assets/images/immfly_logo.svg";
 import PokemonLogo from "~/assets/images/pokemon_logo.svg";

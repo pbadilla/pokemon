@@ -1,15 +1,8 @@
-import React, { useState, useEffect, SVGProps } from 'react';
-import { useTheme } from 'styled-components';
+import React, { useState, useEffect } from 'react';
 
 import api from '~/services/api';
 
 import * as SC from './styles';
-
-interface PokemonTypesProps {
-  name: string;
-  color: string;
-  icon: SVGProps<SVGSVGElement>;
-}
 
 interface PokemonProps {
   id: string;
@@ -17,12 +10,12 @@ interface PokemonProps {
 }
 
 const CardPokemon: React.FC<{ name: string }> = ({ name }) => {
-  const { colors } = useTheme();
+
   const [pokemon, setPokemon] = useState({} as PokemonProps);
 
   useEffect(() => {
     api.get(`/pokemon/${name}`).then(response => {
-      const { id, types, sprites } = response.data
+      const { id, sprites } = response.data
 
       setPokemon({
         id,
@@ -35,7 +28,7 @@ const CardPokemon: React.FC<{ name: string }> = ({ name }) => {
     <SC.Container to={`pokemon/${name}`}>
       <SC.Pokemon>
         {pokemon.image && (
-          <img src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`} />
+          <img alt={`Pokemon ${name}`} src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`} />
         )}
         <SC.PokemonName>{name}</SC.PokemonName>
       </SC.Pokemon>

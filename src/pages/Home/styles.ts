@@ -1,9 +1,10 @@
 import styled from 'styled-components/macro';
 import media from 'styled-media-query';
 
-export const Container = styled.div`
+export const Container = styled.div<{theme?: string;}>`
   align-items: stretch;
-  background-color: #f3f1f1;
+  // background-color: ${props => props.theme === "light" ? '#f3f1f1' : '#363636'};
+  background-color:'#f3f1f1';
   display: flex;
   flex-direction: column;
   padding: 30px 80px;
@@ -57,6 +58,15 @@ export const SubTitle = styled.span`
   font-size: 1rem;
   font-weight: normal;
   margin: 2rem 0 0 0;
+`;
+
+export const ToggleButton = styled.div`
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0 0 1rem 0;
 `;
 
 export const Pokemons = styled.div`

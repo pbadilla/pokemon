@@ -8,7 +8,7 @@
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended"
         "plugin:react/recommended",
-        "prettier/@typescript-eslint",
+        "prettier/@typescript-eslint"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -26,7 +26,7 @@
         "@typescript-eslint",
         "prettier"
         "react",
-        "react-hooks",
+        "react-hooks"
     ],
     "rules": {
       "@typescript-eslint/camelcase": "off",

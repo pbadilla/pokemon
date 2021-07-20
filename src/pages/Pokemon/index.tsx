@@ -1,6 +1,6 @@
-import React, { useState, useEffect, SVGProps } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTheme } from 'styled-components';
+// import { useTheme } from 'styled-components';
 
 import api from '~/services/api';
 
@@ -10,11 +10,7 @@ interface RouteParams {
   name: string;
 }
 
-export interface PokemonTypesProps {
-  name?: string;
-  icon: SVGProps<SVGSVGElement>;
-  color: string;
-}
+
 export interface PokemonAbilities {
   [index:number]: string;
 }
@@ -57,7 +53,7 @@ const Pokemon: React.FC = () => {
     <SC.Container>
       <SC.GoBack to="/pokemon"><span>X</span></SC.GoBack>
       <SC.Content>
-        <img src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`} />
+        <img alt={`Pokemon ${name}`} src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`} />
         <h1>{name}</h1>
       </SC.Content>
       <SC.ContentXtras>

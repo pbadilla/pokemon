@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import CardPokemon from '~/components/CardPokemon';
 import InputSearch from '~/components/InputSearch';
 import Header from '~/components/Header';
+import ToggleButton from '~/components/ToggleButton';
 
 import api from '~/services/api';
 
@@ -13,7 +14,11 @@ interface PokemonProps {
   name: string;
 }
 
-const Home: React.FC = () => {
+interface ThemeProps {
+  theme?: string;
+}
+
+const Home: React.FC<ThemeProps> = () => {
   const NUMBER_POKEMONS = 20;
   const NUMBER_MAX_POKEMONS_API = 750;
 
@@ -22,7 +27,14 @@ const Home: React.FC = () => {
   const [pokemonsOffsetApi, setPokemonsOffsetApi] = useState(NUMBER_POKEMONS);
   const [totalPokemons, setTotalPokemons] = useState(null);
 
-  // search
+  // ToggleButton
+  // const [flavor, setFlavor] = useState('light');
+
+  // const themeToggler = () => {
+  //   flavor === 'light' ? setFlavor('dark') : setFlavor('light')
+  // }
+
+  // Search
   const handleSearchPokemons = useCallback(async () => {
     const response = await api.get(`/pokemon?limit=${NUMBER_MAX_POKEMONS_API}`);
 
@@ -54,7 +66,7 @@ const Home: React.FC = () => {
     else handlePokemonsListDefault();
   }, [pokemonSearch, handlePokemonsListDefault, handleSearchPokemons]);
 
-  // AAdd new Pokemons
+  // Add new Pokemons
   const handleMorePokemons = useCallback(
     async offset => {
       const response = await api.get(`/pokemon`, {
@@ -70,8 +82,6 @@ const Home: React.FC = () => {
     [NUMBER_POKEMONS],
   );
 
-  console.log("totalPokemons", totalPokemons);
-
   return (
     <SC.Container>
       <Header />
@@ -80,6 +90,9 @@ const Home: React.FC = () => {
         <span>{totalPokemons !== null && totalPokemons} pokemons</span>
       </SC.SubTitle>
       <InputSearch value={pokemonSearch} onChange={setPokemonSearch} />
+      <SC.ToggleButton>
+        <ToggleButton />
+      </SC.ToggleButton>
       <SC.Pokemons>
         {pokemons.map(pokemon => (
           <CardPokemon key={pokemon.name} name={pokemon.name} />
