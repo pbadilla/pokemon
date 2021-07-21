@@ -82,21 +82,21 @@ const Home: React.FC<ThemeProps> = () => {
   );
 
   return (
-    <SC.Container>
-      <Header data-test="test-header"/>
+    <SC.Container data-testid="test-home">
+      <Header data-testid="test-header"/>
       <SC.SubTitle>
         <span>Generation I</span>
         <span>{totalPokemons !== null && totalPokemons} pokemons</span>
       </SC.SubTitle>
       <InputSearch value={pokemonSearch} onChange={setPokemonSearch} />
       <SC.ToggleButton>
-        <ToggleButton data-test="test-togglebutton" />
+        <ToggleButton data-testid="test-togglebutton" />
       </SC.ToggleButton>
       { pokemons.length > 0
         ? (
           <SC.Pokemons>
           {pokemons.map(pokemon => (
-            <CardPokemon key={pokemon.name} name={pokemon.name} data-test="test-cards" />
+            <CardPokemon key={pokemon.name} name={pokemon.name} data-testid="test-cards" />
           ))}
         </SC.Pokemons>
         )
@@ -111,7 +111,7 @@ const Home: React.FC<ThemeProps> = () => {
         <button
           type="button"
           onClick={() => handleMorePokemons(pokemonsOffsetApi)}
-          data-test="test-load-button"
+          data-testid="test-load-button"
         >
           Load more
         </button>

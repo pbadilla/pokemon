@@ -11,7 +11,7 @@ interface PokemonProps {
   image: string;
 }
 
-const CardPokemon: React.FC<{ name: string }> = ({ name }) => {
+const CardPokemon: React.FC<{ name: string }> = ({ name = 'name_Pokemon' }) => {
 
   const [pokemon, setPokemon] = useState({} as PokemonProps);
 
@@ -31,7 +31,7 @@ const CardPokemon: React.FC<{ name: string }> = ({ name }) => {
       <SC.Pokemon>
         {pokemon.image
         ? (
-          <img alt={`Pokemon ${name}`} src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`} />
+          <img data-testid={`Pokemon ${name}`} alt={`Pokemon ${name}`} src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`} />
         )
         : <Loader type="Rings" color="#db221c" height={80} width={80} timeout={3000} />
         }

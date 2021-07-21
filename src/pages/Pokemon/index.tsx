@@ -51,18 +51,18 @@ const Pokemon: React.FC = () => {
   const { id, specie, height, abilities } = pokemon;
   return (
     <SC.Container>
-      <SC.GoBack to="/pokemon" data-test="test-go-back"><span>X</span></SC.GoBack>
+      <SC.GoBack to="/pokemon" data-testid="test-go-back"><span>X</span></SC.GoBack>
       <SC.Content>
-        <img data-test="test-image" alt={`Pokemon ${name}`} src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`} />
-        <h1 data-test="test-name">{name}</h1>
+        <img data-testid="test-image" alt={`Pokemon ${name}`} src={`https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`} />
+        <h1 data-testid="test-name">{name}</h1>
       </SC.Content>
       <SC.ContentXtras>
           <ul>
-            <li>ID: <span data-test="test-id">{id}</span> </li>
-            <li>Type: <span data-test="test-specie">{specie}</span></li>
-            <li>Height: <span data-test="test-height">{height}</span></li>
+            <li>ID: <span data-testid="test-id">{id}</span> </li>
+            <li>Type: <span data-testid="test-specie">{specie}</span></li>
+            <li>Height: <span data-testid="test-height">{height}</span></li>
             <li>Habilities: 
-              <ul data-test="test-abilities">
+              <ul data-testid="test-abilities">
               { abilities
                 ? ( Object.values(abilities).map((item) => <li>{item.ability.name}</li>))
                 : ''

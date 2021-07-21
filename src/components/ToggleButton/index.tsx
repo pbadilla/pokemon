@@ -8,7 +8,7 @@ const ToggleButton: React.FC = () => {
     <>
       <SC.SwitchButton >
         <label>
-          <input type="checkbox" />
+          <input data-testid='toggleButton' type="checkbox" />
           <div>
             <span></span>
           </div>
